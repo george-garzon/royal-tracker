@@ -1,4 +1,4 @@
-![hero](FlightTracker.png)
+![hero](ui/public/RoyalShipTrackerAppleMaps.png)
 
 <p align="center">
 	<h1 align="center"><b>Ship Tracker</b></h1>

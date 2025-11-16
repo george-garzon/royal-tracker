@@ -5,9 +5,11 @@ import MapKitMap from "@/components/MapKitMap";
 import Sidebar from "@/components/Sidebar";
 import InfoModal from "@/components/InfoModal";
 import MapLibreMap from "@/components/MapLibreGLMap";
+import { Ship } from "@/types/Ship";
+
 
 export default function Home() {
-    const [selectedShip, setSelectedShip] = useState(null);
+    const [selectedShip, setSelectedShip] = useState<Ship | null>(null);
     const [infoOpen, setInfoOpen] = useState(false);
 
     return (
@@ -19,7 +21,7 @@ export default function Home() {
 
             {/* Sidebar */}
             <Sidebar
-                onSelect={(ship) => setSelectedShip(ship)}
+                onSelect={(ship: Ship) => setSelectedShip(ship)}
                 onOpenInfo={() => setInfoOpen(true)}
             />
 

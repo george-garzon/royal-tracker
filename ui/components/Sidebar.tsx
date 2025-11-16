@@ -2,11 +2,17 @@
 
 import { ships } from "@/lib/ships";
 import { useState } from "react";
+import { Ship } from "@/types/Ship";
 
-export default function Sidebar({ onSelect, onOpenInfo }) {
-    const [activeShip, setActiveShip] = useState(null);
+interface SidebarProps {
+    onSelect: (ship: Ship) => void;
+    onOpenInfo: () => void;
+}
+
+export default function Sidebar({ onSelect, onOpenInfo }: SidebarProps) {
     const [activeTab, setActiveTab] = useState("ships"); // "ships" | "lines"
-    const [activeCruiseLine, setActiveCruiseLine] = useState(null);
+    const [activeShip, setActiveShip] = useState<string | null>(null);
+    const [activeCruiseLine, setActiveCruiseLine] = useState<string | null>(null);
 
     // Get unique cruise lines
     const cruiseLines = [...new Set(ships.map((s) => s.cruiseLine))];
@@ -88,7 +94,7 @@ export default function Sidebar({ onSelect, onOpenInfo }) {
                 {/* Cruise Ships Tab */}
                 {activeTab === "ships" && (
                     <>
-                        {shipList.map((ship) => (
+                        {shipList.map((ship: Ship) => (
                             <div
                                 key={ship.name}
                                 onClick={() => {

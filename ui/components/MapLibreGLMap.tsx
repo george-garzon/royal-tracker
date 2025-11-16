@@ -4,8 +4,14 @@ import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { ships } from "@/lib/ships";
+import { Ship } from "@/types/Ship";
 
-export default function MapLibreMap({ focusShip }) {
+interface MapLibreMapProps {
+    focusShip: Ship | null;
+}
+
+
+export default function MapLibreMap({ focusShip } : MapLibreMapProps) {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const mapInstance = useRef<maplibregl.Map | null>(null);
 

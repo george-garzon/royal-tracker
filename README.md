@@ -10,5 +10,6 @@ Map imported from Maplibre-GL API.
 ## App Architecture
 
 - React
+- NextJS
 - TypeScript
 - TailwindCSS

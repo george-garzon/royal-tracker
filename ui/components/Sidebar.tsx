@@ -26,7 +26,17 @@ export default function Sidebar({ onSelect, onOpenInfo }: SidebarProps) {
     }
 
     return (
-        <div className="absolute left-0 top-0 h-full w-80 bg-white/80 backdrop-blur-xl border-r border-gray-200/50 flex flex-col z-20">
+        <div
+            className="
+        bg-white/80 backdrop-blur-xl flex flex-col z-20
+
+        /* Mobile (default) */
+        fixed bottom-0 left-0 w-full h-1/3 border-t border-gray-200/50
+
+        /* Desktop */
+        md:absolute md:top-0 md:left-0 md:h-full md:w-80 md:border-t-0 md:border-r
+    "
+        >
 
             {/* Traffic Light */}
             <div className="flex items-center h-12 px-4">

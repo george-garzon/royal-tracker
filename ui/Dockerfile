@@ -1,40 +1,38 @@
 # ----------------------------
 # 1) Builder image
 # ----------------------------
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
 # Install OS deps
 RUN apk add --no-cache libc6-compat
 
-# Install deps separately for better cache
-COPY package.json package-lock.json* ./ 
+# Install deps separately for better caching
+COPY package.json package-lock.json* ./
 RUN npm install
 
-# Copy rest of the source code
+# Copy source code
 COPY . .
 
-# Build the Next.js app
+# Build Next.js app
 RUN npm run build
 
 
 # ----------------------------
 # 2) Runner image
 # ----------------------------
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copy Next.js standalone build
+# Copy standalone Next.js build output
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Expose port
 EXPOSE 3000
 
-# Start the server
 CMD ["node", "server.js"]
